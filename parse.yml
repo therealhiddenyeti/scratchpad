@@ -1,5 +1,5 @@
 ---
-- hosts: 100.64.47.156
+- hosts: localhost
 
   tasks:
   - name: Get py version
