@@ -7,7 +7,8 @@
   tasks:
   - name: "BASIC FILTER"
     debug:
-      msg: "{{ result['content-updates'] | json_query('entry[*].version') }}"
+#      msg: "{{ result['content-updates'] | json_query('entry[*].version') }}"
+      msg: cat /tmp/response.json | json_query('results[*].policyid')
 
 #   tasks:
 #   - name: Get py version
