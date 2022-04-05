@@ -6,7 +6,7 @@
 
   tasks:
   - name: "BASIC FILTER"
-    command: cat /tmp/response.json | json_query('results[*].policyid')
+    command: cat /tmp/response.json | json_query('.results[].policyid')
 #      msg: "{{ result['content-updates'] | json_query('entry[*].version') }}"
 #      msg: cat /tmp/response.json | json_query('results[*].policyid')
 
