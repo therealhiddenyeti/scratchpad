@@ -4,10 +4,10 @@
 # become_user: root
 #  gather_facts: no
 
-
-- name: "BASIC FILTER"
-  debug:
-    msg: "{{ result['content-updates'] | json_query('entry[*].version') }}"
+  tasks:
+  - name: "BASIC FILTER"
+    debug:
+      msg: "{{ result['content-updates'] | json_query('entry[*].version') }}"
 
 #   tasks:
 #   - name: Get py version
