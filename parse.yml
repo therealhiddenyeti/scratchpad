@@ -1,8 +1,7 @@
 ---
 - hosts: localhost
-#  become: yes
-#  become_user: root
-#  gather_facts: no
+  become: yes
+  gather_facts: no
 
   tasks:
   - name: "BASIC FILTER"
