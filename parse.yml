@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
   gather_facts: no
-  ansible_python_interpreter: '{{ ansible_playbook_python }}'
+  vars:
+    - ansible_python_interpreter: '{{ ansible_playbook_python }}'
 
   tasks:
     - name: Get py version
