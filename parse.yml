@@ -1,13 +1,10 @@
 ---
 - hosts: localhost
   gather_facts: no
-  vars:
-    - ansible_python_interpreter: '{{ ansible_playbook_python }}'
+#  vars:
+#    - ansible_python_interpreter: '{{ ansible_playbook_python }}'
 
   tasks:
-    - name: Get py interpeter
-      debug: 
-        var: '{{ ansible_playbook_python }}'
 
     - name: execute parser
       local_action: command /usr/bin/python /etc/fortigate/transform.py --ifile /etc/fortigate/response.json -ofile /etc/fortigate/parsedPolicy.csv
