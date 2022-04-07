@@ -8,4 +8,4 @@
       command: /usr/bin/python3 --version
 
     - name: execute parser
-      local_action: command /usr/bin/python3 /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
+      local_action: command /usr/bin/python3 /etc/fortigate/transform.py --ifile /etc/fortigate/response.json -ofile /etc/fortigate/parsedPolicy.csv
