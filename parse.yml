@@ -10,4 +10,4 @@
         var: '{{ ansible_playbook_python }}'
 
     - name: execute parser
-      local_action: command /usr/bin/python3 /etc/fortigate/transform.py --ifile /etc/fortigate/response.json -ofile /etc/fortigate/parsedPolicy.csv
+      local_action: command /usr/bin/python /etc/fortigate/transform.py --ifile /etc/fortigate/response.json -ofile /etc/fortigate/parsedPolicy.csv
