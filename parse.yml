@@ -11,7 +11,7 @@
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
 
     - name: use sed to append data
-      command: sed '/(.*CA-NEW-C.INGRAMMICRO.COM_HTTP.*)$/ s/$/,IJustAddedThis/' /etc/netscaler/appendSample.csv
+      command:  sed '/CA-NEW-C.INGRAMMICRO.COM_HTTP/ s/$/,data,moredata/' /etc/netscaler/appendSample.csv
       delegate_to: localhost 
 
     # - name: line insert
