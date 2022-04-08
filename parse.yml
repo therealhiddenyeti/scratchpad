@@ -6,5 +6,14 @@
 
   tasks:
 
-    - name: execute parser
-      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
+#    - name: execute parser
+#      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
+
+    - name: line insert
+      lineinfile:
+        path: /tmp/appendSample.csv
+        backrefs: yes
+        regexp: "(.*CA-NEW-C.INGRAMMICRO.COM_HTTP.*)$"
+        line: '\1,Ijustaddedthis' 
+      run_once: yes
+      delegate_to: localhost
