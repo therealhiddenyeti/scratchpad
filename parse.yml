@@ -10,11 +10,15 @@
 #    - name: execute parser
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
 
-    - name: line insert
-      lineinfile:
-        path: /etc/netscaler/appendSample.csv
-        backrefs: yes
-        regexp: "(.*CA-NEW-C.INGRAMMICRO.COM_HTTP.*)$"
-        line: '\1,Ijustaddedthis' 
-      run_once: yes
-      delegate_to: localhost
+    - name: use sed to append data
+      command: sed '/,CA-NEW-C.INGRAMMICRO.COM_HTTP,/ s/$/,IJustAddedThis/' /etc/netscaler/appendSample.csv
+      delegate_to: localhost 
+
+    # - name: line insert
+    #   lineinfile:
+    #     path: /etc/netscaler/appendSample.csv
+    #     backrefs: yes
+    #     regexp: "(.*CA-NEW-C.INGRAMMICRO.COM_HTTP.*)$"
+    #     line: '\1,Ijustaddedthis' 
+    #   run_once: yes
+    #   delegate_to: localhost
