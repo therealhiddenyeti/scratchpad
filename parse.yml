@@ -11,7 +11,7 @@
 
     - name: line insert
       lineinfile:
-        path: /tmp/appendSample.csv
+        path: /etc/netscaler/appendSample.csv
         backrefs: yes
         regexp: "(.*CA-NEW-C.INGRAMMICRO.COM_HTTP.*)$"
         line: '\1,Ijustaddedthis' 
