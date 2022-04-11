@@ -6,5 +6,16 @@
         extip: "{{ item.extip }}"
         mappedip: "{{ item.mappedip }}"
 
-    - name:  get Service Group info
-      include_tasks: servicegroup.yml
+    - name: Define Values From CSV File, this reads file in one go, but you could also use col= to read each in it's own lookup.
+      set_fact:
+        ipv46: "{{ csvline[0] }}"
+        name: "{{ csvline[1] }}"
+      vars:
+        csvline = "{{ lookup('csvfile', {{ item.mappedip }} , file='parsedVIPsUnique.csv', delimiter=',') }}"
+      delegate_to: localhost
+
+    - name: print facts
+      debug: 
+        msg: "{{ ipv46 }}  {{ name }}"
+#    - name:  get Service Group info
+#      include_tasks: servicegroup.yml
