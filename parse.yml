@@ -12,13 +12,13 @@
 # Read a CSV file and access the first item
     - name: Read users from CSV file and return a list
       read_csv:
-        path: parsedVIPsUnique.csv
+        path: /etc/netscaler/parsedVIPsUnique.csv
       register: vips
       delegate_to: localhost
 
     - name: Read users from CSV file and return a list
       read_csv:
-        path: parsedVIPsUnique.csv
+        path: /etc/netscaler/parsedVIPsUnique.csv
         key: mappedip
       register: vip_mappedips
       delegate_to: localhost
