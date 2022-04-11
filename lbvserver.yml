@@ -11,7 +11,7 @@
         ipv46: "{{ csvline[0] }}"
         name: "{{ csvline[1] }}"
       vars:
-        csvline = {{ lookup('csvfile', mappedip + 'file=parsedVIPsUnique.csv delimiter=,') }}
+        csvline = "{{ lookup('csvfile', mappedip + 'file=parsedVIPsUnique.csv delimiter=,') }}"
       #            {{ lookup('csvfile', item     + 'file=groups.csv col=0 delimiter=,') }}   
       delegate_to: localhost
 
