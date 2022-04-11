@@ -6,4 +6,5 @@
     - name: write the facts to the output csv file
       lineinfile:
         dest: /etc/netscaler/netboxImport.csv
-        line: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
+        # 'location,serialnbr,vdom,extip,mappedip'
+        line: "{{ location }},{{ serialnbr }},{{ vdom }},{{ extip }},{{ mappedip }}"
