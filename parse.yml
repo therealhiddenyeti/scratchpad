@@ -43,6 +43,14 @@
       register: vips
       delegate_to: localhost
 
+    # before processing, create the base csv file
+    - name: create the base csv file
+      lineinfile:
+        dest: /etc/netscaler/netboxInport.csv
+        line: "location,serialnbr,vdom,extip,mappedip"
+        create: yes
+      run_once: yes
+
     - name: Loop through the Vips, get lbvserver info
       include_tasks: lbvserver.yml
       with_items: "{{ vips.list }}"
