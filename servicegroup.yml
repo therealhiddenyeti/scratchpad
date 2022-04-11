@@ -1,0 +1,4 @@
+
+    - name: print facts
+      debug: 
+        msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"

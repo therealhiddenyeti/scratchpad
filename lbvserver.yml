@@ -6,6 +6,5 @@
         extip: "{{ item.extip }}"
         mappedip: "{{ item.mappedip }}"
 
-    - name: print facts
-      debug: 
-        msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
+    - name:  get Service Group info
+      include_tasks: servicegroup.yml
