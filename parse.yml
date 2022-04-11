@@ -9,10 +9,36 @@
 
 #    - name: execute parser
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
+# Read a CSV file and access the first item
+    - name: Read users from CSV file and return a list
+      read_csv:
+        path: parsedVIPsUnique.csv
+      register: vips
+      delegate_to: localhost
 
-    - name: use sed to append data
-      command:  sed '/CA-NEW-C.INGRAMMICRO.COM_HTTP/ s/$/,data,moredata/' /etc/netscaler/appendSample.csv
-      delegate_to: localhost 
+    - name: Read users from CSV file and return a list
+      read_csv:
+        path: parsedVIPsUnique.csv
+        key: mappedip
+      register: vip_mappedips
+      delegate_to: localhost
+
+    # - name: Define Values From CSV File, this reads file in one go, but you could also use col= to read each in it's own lookup.
+    #   set_fact:
+    #     loop_ip: "{{ csvline[0] }}"
+    #     int_ip: "{{ csvline[1] }}"
+    #     int_mask: "{{ csvline[2] }}"
+    #     int_name: "{{ csvline[3] }}"
+    #     local_as: "{{ csvline[4] }}"
+    #     neighbor_as: "{{ csvline[5] }}"
+    #     neigh_int_ip: "{{ csvline[6] }}"
+    #   vars:
+    #     csvline = "{{ lookup('csvfile', bgp_neighbor_ip, file='parsedVIPsUnique.csv', delimiter=',') }}"
+    #   delegate_to: localhost
+
+    # - name: use sed to append data
+    #   command:  sed '/CA-NEW-C.INGRAMMICRO.COM_HTTP/ s/$/,data,moredata/' /etc/netscaler/appendSample.csv
+    #   delegate_to: localhost 
 
     # - name: line insert
     #   lineinfile:
