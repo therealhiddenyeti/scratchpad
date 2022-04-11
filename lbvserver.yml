@@ -7,4 +7,5 @@
         mappedip: "{{ item.mappedip }}"
 
     - name: print facts
-      debug: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }},"
+      debug: 
+        msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
