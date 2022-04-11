@@ -11,14 +11,14 @@
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
 # Read a CSV file and access the first item
     - name: sort the vips to ensure they are unique
-      shell: cat parsedServiceGroups.csv | sort -u | uniq -u > parsedServiceGroupsUnique.csv
+      shell: cat parsedVIPs.csv | sort -u | uniq -u > parsedVIPsUnique.csv
       delegate_to: localhost
 
     # the sorting to make unique move the headers of the csv.  
     # these net two tasks out it back at the top of the file.
     - name: line insert
       lineinfile:
-        path: /etc/netscaler/parsedServiceGroupsUnique.csv
+        path: /etc/netscaler/parsedVIPsUnique.csv
         regexp: '^(location,serialnbr,vdom,extip,mappedip)'
         # String to Search
         #regexp: "LogLevel [Dd]ebug" 
@@ -29,7 +29,7 @@
 
     - name: line insert
       lineinfile:
-        path: /etc/netscaler/parsedServiceGroupsUnique.csv
+        path: /etc/netscaler/parsedVIPsUnique.csv
         line: 'location,serialnbr,vdom,extip,mappedip'
         insertbefore: BOF 
       run_once: yes
