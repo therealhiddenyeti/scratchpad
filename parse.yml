@@ -21,11 +21,8 @@
       lineinfile:
         path: /etc/netscaler/parsedVIPsUnique.csv
         regexp: '^(location,serialnbr,vdom,extip,mappedip)'
-        # String to Search
-        #regexp: "LogLevel [Dd]ebug" 
-        # State is set to Absent to remove if the Searching Line is found
         state: absent
-        backup: yes
+        # backup: yes
       run_once: yes
       delegate_to: localhost
 
