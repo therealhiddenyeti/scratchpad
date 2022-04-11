@@ -14,18 +14,34 @@
       shell: cat parsedServiceGroups.csv | sort -u | uniq -u > parsedServiceGroupsUnique.csv
       delegate_to: localhost
 
+    # the sorting to make unique move the headers of the csv.  
+    # these net two tasks out it back at the top of the file.
+    - name: line insert
+      lineinfile:
+        path: /etc/netscaler/parsedServiceGroupsUnique.csv
+        line: 'location,serialnbr,vdom,extip,mappedip'
+        # String to Search
+        #regexp: "LogLevel [Dd]ebug" 
+        # State is set to Absent to remove if the Searching Line is found
+        state: absent
+      run_once: yes
+      delegate_to: localhost
+
+    - name: line insert
+      lineinfile:
+        path: /etc/netscaler/parsedServiceGroupsUnique.csv
+        line: 'location,serialnbr,vdom,extip,mappedip'
+        insertbefore: BOF 
+      run_once: yes
+      delegate_to: localhost
+
     - name: Read users from CSV file and return a list
       read_csv:
         path: /etc/netscaler/parsedVIPsUnique.csv
       register: vips
       delegate_to: localhost
 
-    - name: Read users from CSV file and return a list
-      read_csv:
-        path: /etc/netscaler/parsedVIPsUnique.csv
-        key: mappedip
-      register: vip_mappedips
-      delegate_to: localhost
+
 
     # - name: Define Values From CSV File, this reads file in one go, but you could also use col= to read each in it's own lookup.
     #   set_fact:
