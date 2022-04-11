@@ -11,11 +11,12 @@
         ipv46: "{{ csvline[0] }}"
         name: "{{ csvline[1] }}"
       vars:
-        csvline = "{{ lookup('csvfile', "{{ mappedip }}", file='parsedVIPsUnique.csv', delimiter=',') }}"
+        csvline = {{ lookup('csvfile', mappedip + 'file=parsedVIPsUnique.csv delimiter=,') }}
+      #            {{ lookup('csvfile', item     + 'file=groups.csv col=0 delimiter=,') }}   
       delegate_to: localhost
 
     - name: print facts
-      debug: 
+      debug:  
         msg: "{{ ipv46 }}  {{ name }}"
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
