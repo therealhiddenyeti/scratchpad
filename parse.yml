@@ -10,6 +10,10 @@
 #    - name: execute parser
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
 # Read a CSV file and access the first item
+    - name: sort the vips to ensure they are unique
+      shell: cat parsedServiceGroups.csv | sort -u | uniq -u > parsedServiceGroupsUnique.csv
+      delegate_to: localhost
+
     - name: Read users from CSV file and return a list
       read_csv:
         path: /etc/netscaler/parsedVIPsUnique.csv
