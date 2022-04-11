@@ -1,0 +1,10 @@
+    - name: set facts from vip
+      set_fact:
+        serialnbr: "{{ item.serialnbr }}"
+        vdom: "{{ item.vdom }}"
+        location: "{{ item.location }}"
+        extip: "{{ item.extip }}"
+        mappedip: "{{ item.mappedip }}"
+
+    - name: print facts
+      debug: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }},"

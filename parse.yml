@@ -17,7 +17,7 @@
 
     # the sorting to make unique move the headers of the csv.  
     # these net two tasks out it back at the top of the file.
-    - name: line delete
+    - name: delete the moved header
       lineinfile:
         path: /etc/netscaler/parsedVIPsUnique.csv
         regexp: '^(location,serialnbr,vdom,extip,mappedip)'
@@ -29,7 +29,7 @@
       run_once: yes
       delegate_to: localhost
 
-    - name: line insert
+    - name: insert the header back to the top of the file
       lineinfile:
         path: /etc/netscaler/parsedVIPsUnique.csv
         line: 'location,serialnbr,vdom,extip,mappedip'
@@ -42,6 +42,10 @@
         path: /etc/netscaler/parsedVIPsUnique.csv
       register: vips
       delegate_to: localhost
+
+    - name: Loop through the Vips, get lbvserver info
+      include_tasks: lbvserver.yml
+      with_items: "{{ vips.list }}"
 
 
 
