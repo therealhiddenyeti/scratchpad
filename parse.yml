@@ -11,7 +11,7 @@
 #      local_action: command /usr/bin/python /etc/fortigate/transform.py -i /etc/fortigate/response.json -o /etc/fortigate/parsedPolicy.csv
 # Read a CSV file and access the first item
     - name: sort the vips to ensure they are unique
-      shell: cat parsedVIPs.csv | sort -u | uniq -u > parsedVIPsUnique.csv
+      shell: cat /etc/netscaler/parsedVIPs.csv | sort -u | uniq -u > /etc/netscaler/parsedVIPsUnique.csv
       delegate_to: localhost
 
     # the sorting to make unique move the headers of the csv.  
