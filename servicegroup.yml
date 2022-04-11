@@ -1,4 +1,9 @@
 
-    - name: print facts
-      debug: 
-        msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
+    # - name: print facts
+    #   debug: 
+    #     msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
+    
+    - name: write the facts to the output csv file
+      lineinfile:
+        dest: /etc/netscaler/netboxImport.csv
+        line: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
