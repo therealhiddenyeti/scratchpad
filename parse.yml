@@ -24,6 +24,7 @@
         #regexp: "LogLevel [Dd]ebug" 
         # State is set to Absent to remove if the Searching Line is found
         state: absent
+        backup: yes
       run_once: yes
       delegate_to: localhost
 
