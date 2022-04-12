@@ -14,6 +14,6 @@
     - name: set facts from lbvserver
       set_fact: 
         lbvserver_ip: "{{ lbvservers.stdout.split(',')[0] }}"
-      when: lbvservers.rc = 0
+      when: lbvservers.rc == 0
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
