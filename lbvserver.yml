@@ -12,6 +12,7 @@
       delegate_to: localhost
 
     - name: set facts from lbvserver
-      set_fact: "{{ lbvservers_stdout.split(',')[0] }}"
+      set_fact: 
+        lbvserver_ip: "{{ lbvservers_stdout.split(',')[0] }}"
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
