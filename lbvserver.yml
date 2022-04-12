@@ -9,6 +9,8 @@
     - name: get data from lbvserver file for each mapped ip
       command: grep "{{ item.mappedip}}" /etc/netscaler/parsedLBVServer.csv
       register: lbvservers
+      failed_when:
+        - lbvservers.rc > 1
       delegate_to: localhost
 
     - name: set facts from lbvserver
