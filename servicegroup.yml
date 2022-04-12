@@ -1,5 +1,5 @@
     - name: get data from lbvserver file for each mapped ip
-      command: grep "{{ cf_lbvservername }}" /etc/netscaler/parsedServiceGroups.csv
+      command: grep -w "{{ cf_lbvservername }}" /etc/netscaler/parsedServiceGroups.csv
       register: servicegroups
       failed_when:
         - servicegroups.rc > 1
