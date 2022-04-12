@@ -1,10 +1,15 @@
     - name: set facts from vip
       set_fact:
-        serialnbr: "{{ item.serialnbr }}"
-        vdom: "{{ item.vdom }}"
-        location: "{{ item.location }}"
-        extip: "{{ item.extip }}"
-        mappedip: "{{ item.mappedip }}"
+        cf_device_location: "{{ item.location }}"
+        name: "{{ item.serialnbr }}"
+        cf_vdom: "{{ item.vdom }}"
+        cf_extip: "{{ item.extip }}"
+        cf_mappedip: "{{ item.mappedip }}"
+        device_role:  Firewall
+        manufacturer: Fortigate 
+        device_type:  Firewall
+        status: Up
+        site: "{{ item.location }}"
 
     - name: get data from lbvserver file for each mapped ip
       command: grep "{{ item.mappedip}}" /etc/netscaler/parsedLBVServer.csv
@@ -15,7 +20,11 @@
 
     - name: set facts from lbvserver
       set_fact: 
-        lbvserver_ip: "{{ lbvservers.stdout.split(',')[0] }}"
+        cf_lbvserver_ip: "{{ lbvservers.stdout.split(',')[0] }}"
+        cf_lbvservername: "{{ lbvservers.stdout.split(',')[1] }}"
+        cf_lbvipserver_currstatus: Up
       when: lbvservers.rc == 0
-#    - name:  get Service Group info
-#      include_tasks: servicegroup.yml
+
+    - name:  get Service Group info
+      include_tasks: servicegroup.yml
+      when: lbvservers.rc == 0

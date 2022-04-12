@@ -1,10 +1,10 @@
+    - name: get data from lbvserver file for each mapped ip
+      command: grep "{{ cf_lbvservername }}" /etc/netscaler/parsedServiceGroups.csv
+      register: servicegroups
+      failed_when:
+        - servicegroups.rc > 1
+      delegate_to: localhost
 
-    # - name: print facts
-    #   debug: 
-    #     msg: "{{ serialnbr }},{{ vdom }},{{ location }},{{ extip }},{{ mappedip }}"
-    
-    - name: write the facts to the output csv file
-      lineinfile:
-        dest: /etc/netscaler/netboxImport.csv
-        # 'location,serialnbr,vdom,extip,mappedip'
-        line: "{{ location }},{{ serialnbr }},{{ vdom }},{{ extip }},{{ mappedip }}"
+    - name: print servicegroups
+      debug:
+        var: servicegroups.stdout
