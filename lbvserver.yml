@@ -6,17 +6,13 @@
         extip: "{{ item.extip }}"
         mappedip: "{{ item.mappedip }}"
 
-    - name: Define Values From CSV File, this reads file in one go, but you could also use col= to read each in it's own lookup.
-      set_fact:
-        ipv46: "{{ csvline[0] }}"
-        name: "{{ csvline[1] }}"
-      vars:
-        csvline = "{{ lookup('csvfile', mappedip + 'file=parsedVIPsUnique.csv delimiter=,') }}"
-      #            {{ lookup('csvfile', item     + 'file=groups.csv col=0 delimiter=,') }}   
+    - name: get data from lbvserver file for each mapped ip
+      command: grep {{ item.mappedip}} /etc/netscaler/parsedLBVServer.csv
+      register: lbvservers
       delegate_to: localhost
 
     - name: print facts
       debug:  
-        msg: "{{ ipv46 }}  {{ name }}"
+        msg: "{{ lbvservers.list }} "
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
