@@ -1,3 +1,9 @@
+    - name: set ServiceGroup facts 
+      set_fact: 
+        cf_servicegroupname: "{{ item.split(',')[2] }}"
+        cf_servicegroup_member: "{{ item.split(',')[2] }}"
+        cf_servicegroup_member_ip: "{{ item.split(',')[3] }}"
+
     - name: write the facts to the output csv file
       lineinfile:
         dest: /etc/netscaler/netboxImport.csv
