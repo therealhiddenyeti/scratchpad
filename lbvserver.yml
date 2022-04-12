@@ -8,11 +8,11 @@
 
     - name: get data from lbvserver file for each mapped ip
       command: grep "{{ item.mappedip}}" /etc/netscaler/parsedLBVServer.csv
-      register: lbvservers_stdout
+      register: lbvservers
       delegate_to: localhost
 
     - name: set facts from lbvserver
       set_fact: 
-        lbvserver_ip: "{{ lbvservers_stdout.split(',')[0] }}"
+        lbvserver_ip: "{{ lbvservers.stdout_lines.split(',')[0] }}"
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
