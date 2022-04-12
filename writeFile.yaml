@@ -1,8 +1,8 @@
     - name: set ServiceGroup facts 
       set_fact: 
-        cf_servicegroupname: "{{ item.split(',')[2] }}"
-        cf_servicegroup_member: "{{ item.split(',')[2] }}"
-        cf_servicegroup_member_ip: "{{ item.split(',')[3] }}"
+        cf_servicegroupname: "{{ inner_item.split(',')[2] }}"
+        cf_servicegroup_member: "{{ inner_item.split(',')[2] }}"
+        cf_servicegroup_member_ip: "{{ inner_item.split(',')[3] }}"
 
     - name: write the facts to the output csv file
       lineinfile:
