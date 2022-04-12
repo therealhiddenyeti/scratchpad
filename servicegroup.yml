@@ -6,7 +6,7 @@
       delegate_to: localhost
 
     - name: print servicegroups
-      include_tasks: writeFile.yaml"
+      include_tasks: writeFile.yaml
       with_items: "{{ servicegroups.stdout_lines }}"
       loop_control:
         loop_var: inner_item
