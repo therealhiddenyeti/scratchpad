@@ -1,11 +1,15 @@
-    - name: set ServiceGroup facts 
-      set_fact: 
-        cf_servicegroupname: "{{ inner_item.split(',')[2] }}"
-        cf_servicegroup_member: "{{ inner_item.split(',')[2] }}"
-        cf_servicegroup_member_ip: "{{ inner_item.split(',')[3] }}"
+    - name: print line
+      debug:
+        var: inner_item
 
-    - name: write the facts to the output csv file
-      lineinfile:
-        dest: /etc/netscaler/netboxImport.csv
+#    - name: set ServiceGroup facts 
+#      set_fact: 
+#        cf_servicegroupname: "{{ inner_item.split(',')[2] }}"
+#        cf_servicegroup_member: "{{ inner_item.split(',')[2] }}"
+#        cf_servicegroup_member_ip: "{{ inner_item.split(',')[3] }}"
+
+#    - name: write the facts to the output csv file
+#      lineinfile:
+#        dest: /etc/netscaler/netboxImport.csv
         # 'location,serialnbr,vdom,extip,mappedip'
-        line: "{{cf_device_location}},{{name}},{{cf_vdom}},{{cf_extip}},{{cf_mappedip}},{{device_role}},{{manufacturer}},{{device_type}},{{status}},{{site}},{{cf_lbvservername}},{{cf_lbvserverip}},{{cf_lbvipserver_currstatus}},{{cf_servicegroupname}},{{cf_servicegroup_member}},{{cf_servicegroup_member_ip}}"
+#        line: "{{cf_device_location}},{{name}},{{cf_vdom}},{{cf_extip}},{{cf_mappedip}},{{device_role}},{{manufacturer}},{{device_type}},{{status}},{{site}},{{cf_lbvservername}},{{cf_lbvserverip}},{{cf_lbvipserver_currstatus}},{{cf_servicegroupname}},{{cf_servicegroup_member}},{{cf_servicegroup_member_ip}}"
