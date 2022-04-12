@@ -10,4 +10,4 @@
       with_items: servicegroups.stdout_lines
       loop_control:
         loop_var: inner_item
-      when: result.stdout != ""
+      when: servicegroups.stdout != ""
