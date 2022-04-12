@@ -6,5 +6,6 @@
       delegate_to: localhost
 
     - name: print servicegroups
-      debug:
-        var: servicegroups.stdout
+      include_tasks: writeFile.yaml
+      with_items: servicegroups.stdout_lines
+      when: result.stdout != ""
