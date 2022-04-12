@@ -7,12 +7,12 @@
         mappedip: "{{ item.mappedip }}"
 
     - name: get data from lbvserver file for each mapped ip
-        command: grep {{ item.mappedip}} /etc/netscaler/parsedLBVServer.csv
+      command: grep "{{ item.mappedip}}" /etc/netscaler/parsedLBVServer.csv
       register: lbvservers
       delegate_to: localhost
 
     - name: print facts
       debug:  
-        msg: "{{ lbvservers.list }} "
+        var: "{{ lbvservers.list }} "
 #    - name:  get Service Group info
 #      include_tasks: servicegroup.yml
