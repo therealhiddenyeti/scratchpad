@@ -7,6 +7,7 @@
 
     - name: print servicegroups
       include_tasks: writeFile.yaml
-      loop: servicegroups.stdout_lines
-      loop_var: inner_item
+      with_items: servicegroups.stdout_lines
+      loop_control:
+        loop_var: inner_item
       when: result.stdout != ""
